@@ -12,6 +12,8 @@
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
     "axios": "^0.19.1",
+    "conf": "^6.2.0",
+    "conf-cli": "^0.1.9",
     "tslib": "^1"
   },
   "devDependencies": {
@@ -45,7 +47,8 @@
     "commands": "./lib/commands",
     "bin": "bamboo-cli",
     "plugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "conf-cli"
     ]
   },
   "repository": "jmbeach/bamboo-cli",
