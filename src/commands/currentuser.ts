@@ -19,7 +19,7 @@ export default class CurrentUser extends BambooClientCommand {
   async run() {
     return this.client?.getCurrentUser()
       .then(userData => {
-        this.log(stringify(userData.data, null, 2))
+        this.log(stringify(userData.data, null, this.tabCount))
       }).catch(this.handleError)
   }
 }

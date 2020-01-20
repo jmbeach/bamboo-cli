@@ -6,6 +6,8 @@ const config = new Conf()
 export default abstract class BambooClientCommand extends Command {
   client: BambooClient | null = null;
 
+  tabCount: string | number | null = null;
+
   handleError = (err: any) => {
     if (err.response.status === 401) {
       this.error('Username or password incorrect.')
@@ -20,6 +22,7 @@ export default abstract class BambooClientCommand extends Command {
     const username = config.get('username')
     const password = config.get('password')
     const bambooUrl = config.get('url')
+    const tabCount = config.get('tabs')
     const errorMessages = []
     if (typeof username === 'undefined') {
       errorMessages.push('\nUsername not configured. "bamboo-cli conf username <username>".')
@@ -35,6 +38,10 @@ export default abstract class BambooClientCommand extends Command {
 
     if (errorMessages.length > 0) {
       this.error(errorMessages.join(''))
+    }
+
+    if (typeof tabCount !== 'undefined') {
+      this.tabCount = tabCount
     }
 
     this.client = new BambooClient(username, password, bambooUrl)

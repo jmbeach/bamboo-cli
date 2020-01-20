@@ -23,7 +23,7 @@ export default class Plans extends BambooClientCommand {
           data.plans.plan = data.plans.plan.filter((p: any) => p.enabled !== false)
         }
 
-        this.log(stringify(data, null, 4))
+        this.log(stringify(data, null, this.tabCount))
       }).catch(this.handleError)
   }
 }
