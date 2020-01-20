@@ -12,6 +12,18 @@ command-line tool to interact with Atlassian Bamboo
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
+
+# Configuration
+
+The following configuration settings are available:
+
+"*" = required
+
+* \* $ bamboo-cli conf username <username>
+* \* $ bamboo-cli conf password <password>
+* \* $ bamboo-cli conf url <url>
+*    $ bamboo-cli conf tabCount <tabCount>
+
 # Usage
 <!-- usage -->
 ```sh-session
@@ -70,9 +82,9 @@ USAGE
 EXAMPLE
   $ bamboo-cli currentuser
   {
-     name: 'jaredbeachdesign@gmail.com',
-     fullName: 'Jared Beach',
-     email: 'jaredbeachdesign@gmail.com'
+     name: 'user@domain.com',
+     fullName: 'John Smith',
+     email: 'user@domain.com'
   }
 ```
 

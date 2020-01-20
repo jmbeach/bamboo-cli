@@ -58,7 +58,10 @@
     "plugins": [
       "@oclif/plugin-help",
       "conf-cli"
-    ]
+    ],
+    "hooks": {
+      "init": "./lib/hooks/init/init"
+    }
   },
   "repository": "jmbeach/bamboo-cli",
   "scripts": {
