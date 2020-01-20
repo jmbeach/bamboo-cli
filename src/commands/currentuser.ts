@@ -7,7 +7,11 @@ export default class CurrentUser extends BambooClientCommand {
 
   static examples = [
     `$ bamboo-cli currentuser
-hello world from ./src/hello.ts!
+{
+  name: 'jaredbeachdesign@gmail.com',
+  fullName: 'Jared Beach',
+  email: 'jaredbeachdesign@gmail.com'
+}
 `,
   ]
 
