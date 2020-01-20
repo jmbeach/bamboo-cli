@@ -1,6 +1,7 @@
 import BambooClientCommand from '../bamboo-client-command'
+import stringify = require('json-stringify-safe');
 
-export default class CurrentUser extends BambooClientCommand {
+export default class Server extends BambooClientCommand {
   static description = 'get server info';
 
   static examples = [
@@ -18,7 +19,7 @@ export default class CurrentUser extends BambooClientCommand {
   async run() {
     return this.client?.getServerInfo()
       .then(res => {
-        this.log(res.data)
+        this.log(stringify(res.data, null, this.tabCount))
       }).catch(this.handleError)
   }
 }

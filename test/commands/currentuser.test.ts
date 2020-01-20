@@ -9,6 +9,7 @@ describe('currentuser', () => {
     fullName: 'John Smith',
     email: 'user@domain.com',
   }
+
   test
   .nock(config.bambooUrl, api => api.get('/rest/api/latest/currentUser.json').reply(200, expected))
   .stdout()
@@ -16,4 +17,11 @@ describe('currentuser', () => {
   .it('runs currentuser', ctx => {
     expect(ctx.stdout).to.contain(stringify(expected, null, config.tabCount))
   })
+
+  test
+  .nock(config.bambooUrl, api => api.get('/rest/api/latest/currentUser.json').reply(401))
+  .stdout()
+  .command(['currentuser'])
+  .exit(2)
+  .it('throws error when currentuser unauthenticated')
 })
