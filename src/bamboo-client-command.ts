@@ -1,7 +1,6 @@
 import {Command} from '@oclif/command'
 import BambooClient from './bamboo-client/bamboo-client'
-import Conf = require('conf');
-const config = new Conf()
+import ConfigurationParser from './configuration-parser'
 
 export default abstract class BambooClientCommand extends Command {
   client: BambooClient | null = null;
@@ -19,31 +18,12 @@ export default abstract class BambooClientCommand extends Command {
   }
 
   async init() {
-    const username = config.get('username')
-    const password = config.get('password')
-    const bambooUrl = config.get('url')
-    const tabCount = config.get('tabs')
-    const errorMessages = []
-    if (typeof username === 'undefined') {
-      errorMessages.push('\nUsername not configured. "bamboo-cli conf username <username>".')
+    const config = ConfigurationParser.parse()
+    if (config.errorMessages.length > 0) {
+      this.error(config.errorMessages.join(''))
     }
 
-    if (typeof password === 'undefined') {
-      errorMessages.push('\n\tPassword not configured. "bamboo-cli conf password <password>".')
-    }
-
-    if (typeof bambooUrl === 'undefined') {
-      errorMessages.push('\n\tBamboo URL not configured. "bamboo-cli conf url <url>".')
-    }
-
-    if (errorMessages.length > 0) {
-      this.error(errorMessages.join(''))
-    }
-
-    if (typeof tabCount !== 'undefined') {
-      this.tabCount = tabCount
-    }
-
-    this.client = new BambooClient(username, password, bambooUrl)
+    this.tabCount = config.tabCount
+    this.client = new BambooClient(config.username, config.password, config.bambooUrl)
   }
 }

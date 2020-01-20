@@ -11,7 +11,7 @@ export default class Projects extends BambooClientCommand {
   async run() {
     return this.client?.getAllProjects()
       .then(res => {
-        this.log(stringify(res.data, null, 4))
+        this.log(stringify(res.data, null, this.tabCount))
       }).catch(this.handleError)
   }
 }

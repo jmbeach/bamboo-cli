@@ -1,8 +1,7 @@
 import {expect, test} from '@oclif/test'
 import stringify = require('json-stringify-safe');
-import TestHelper from '../test-helper'
-
-const config = TestHelper.getConfig()
+import ConfigParser from '../../src/configuration-parser'
+const config = ConfigParser.parse()
 
 describe('currentuser', () => {
   const expected = {
@@ -11,7 +10,7 @@ describe('currentuser', () => {
     email: 'user@domain.com',
   }
   test
-  .nock(config.baseUrl, api => api.get('/rest/api/latest/currentUser.json').reply(200, expected))
+  .nock(config.bambooUrl, api => api.get('/rest/api/latest/currentUser.json').reply(200, expected))
   .stdout()
   .command(['currentuser'])
   .it('runs currentuser', ctx => {

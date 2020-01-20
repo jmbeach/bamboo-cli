@@ -1,8 +1,7 @@
 import {expect, test} from '@oclif/test'
 import stringify = require('json-stringify-safe');
-import TestHelper from '../test-helper'
-
-const config = TestHelper.getConfig()
+import ConfigParser from '../../src/configuration-parser'
+const config = ConfigParser.parse()
 
 describe('plans', () => {
   const mock = {
@@ -32,7 +31,7 @@ describe('plans', () => {
   }
 
   test
-  .nock(config.baseUrl, api => api.get('/rest/api/latest/plan.json').reply(200, mock))
+  .nock(config.bambooUrl, api => api.get('/rest/api/latest/plan.json').reply(200, mock))
   .stdout()
   .command(['plans'])
   .it('runs plans', ctx => {
@@ -40,7 +39,7 @@ describe('plans', () => {
   })
 
   test
-  .nock(config.baseUrl, api => api.get('/rest/api/latest/plan.json').reply(200, mock))
+  .nock(config.bambooUrl, api => api.get('/rest/api/latest/plan.json').reply(200, mock))
   .stdout()
   .command(['plans', '--enabled'])
   .it('runs plans --enabled', ctx => {

@@ -9,6 +9,7 @@ command-line tool to interact with Atlassian Bamboo
 [![License](https://img.shields.io/npm/l/bamboo-cli.svg)](https://github.com/jmbeach/bamboo-cli/blob/master/package.json)
 
 <!-- toc -->
+* [Configuration](#configuration)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
