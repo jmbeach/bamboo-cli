@@ -6,6 +6,16 @@ const config = new Conf()
 export default abstract class BambooClientCommand extends Command {
   client: BambooClient | null = null;
 
+  handleError = (err: any) => {
+    if (err.response.status === 401) {
+      this.error('Username or password incorrect.')
+    } else if (err.response.data.message) {
+      this.error('Message: ' + err.response.data.message)
+    } else {
+      this.error('Unexpected error ocurred')
+    }
+  }
+
   async init() {
     const username = config.get('username')
     const password = config.get('password')

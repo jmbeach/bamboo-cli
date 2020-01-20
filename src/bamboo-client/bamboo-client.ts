@@ -27,4 +27,8 @@ export default class BambooClient {
   getCurrentUser() {
     return this._axios.get('/rest/api/latest/currentUser.json')
   }
+
+  getServerInfo() {
+    return this._axios.get('/rest/api/latest/info.json')
+  }
 }

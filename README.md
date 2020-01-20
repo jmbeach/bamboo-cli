@@ -31,6 +31,7 @@ USAGE
 * [`bamboo-cli conf [KEY] [VALUE]`](#bamboo-cli-conf-key-value)
 * [`bamboo-cli currentuser`](#bamboo-cli-currentuser)
 * [`bamboo-cli help [COMMAND]`](#bamboo-cli-help-command)
+* [`bamboo-cli server`](#bamboo-cli-server)
 
 ## `bamboo-cli conf [KEY] [VALUE]`
 
@@ -91,4 +92,23 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src\commands\help.ts)_
+
+## `bamboo-cli server`
+
+get server info
+
+```
+USAGE
+  $ bamboo-cli server
+
+EXAMPLE
+  $ bamboo-cli server
+  {
+     name: 'jaredbeachdesign@gmail.com',
+     fullName: 'Jared Beach',
+     email: 'jaredbeachdesign@gmail.com'
+  }
+```
+
+_See code: [src\commands\server.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\server.ts)_
 <!-- commandsstop -->

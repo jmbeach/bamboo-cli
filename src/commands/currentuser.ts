@@ -19,10 +19,6 @@ export default class CurrentUser extends BambooClientCommand {
     return this.client?.getCurrentUser()
       .then(userData => {
         this.log(userData.data)
-      }).catch(err => {
-        if (typeof err === 'undefined') {
-          this.error('Unexpected error ocurred')
-        }
-      })
+      }).catch(this.handleError)
   }
 }
