@@ -24,8 +24,16 @@ export default class BambooClient {
     })
   }
 
+  getAllProjects() {
+    return this._axios.get('/rest/api/latest/deploy/project/all.json')
+  }
+
   getCurrentUser() {
     return this._axios.get('/rest/api/latest/currentUser.json')
+  }
+
+  getAllPlans() {
+    return this._axios.get('/rest/api/latest/plan.json')
   }
 
   getServerInfo() {

@@ -14,11 +14,13 @@
     "axios": "^0.19.1",
     "conf": "^6.2.0",
     "conf-cli": "^0.1.9",
+    "json-stringify-safe": "^5.0.1",
     "tslib": "^1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@types/axios": "^0.14.0",
+    "@types/json-stringify-safe": "^5.0.0",
     "@types/node": "^10",
     "eslint": "^5.13",
     "eslint-config-oclif": "^3.1",

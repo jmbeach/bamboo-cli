@@ -31,6 +31,8 @@ USAGE
 * [`bamboo-cli conf [KEY] [VALUE]`](#bamboo-cli-conf-key-value)
 * [`bamboo-cli currentuser`](#bamboo-cli-currentuser)
 * [`bamboo-cli help [COMMAND]`](#bamboo-cli-help-command)
+* [`bamboo-cli plans`](#bamboo-cli-plans)
+* [`bamboo-cli projects`](#bamboo-cli-projects)
 * [`bamboo-cli server`](#bamboo-cli-server)
 
 ## `bamboo-cli conf [KEY] [VALUE]`
@@ -93,6 +95,38 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src\commands\help.ts)_
 
+## `bamboo-cli plans`
+
+get all plans
+
+```
+USAGE
+  $ bamboo-cli plans
+
+OPTIONS
+  -e, --enabled
+
+EXAMPLES
+  $ bamboo-cli plans
+  $ bamboo-cli plans --enabled
+```
+
+_See code: [src\commands\plans.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\plans.ts)_
+
+## `bamboo-cli projects`
+
+get all projects
+
+```
+USAGE
+  $ bamboo-cli projects
+
+EXAMPLE
+  $ bamboo-cli projects
+```
+
+_See code: [src\commands\projects.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\projects.ts)_
+
 ## `bamboo-cli server`
 
 get server info
@@ -104,9 +138,11 @@ USAGE
 EXAMPLE
   $ bamboo-cli server
   {
-     name: 'jaredbeachdesign@gmail.com',
-     fullName: 'Jared Beach',
-     email: 'jaredbeachdesign@gmail.com'
+     version: 'x.x.x',
+     edition: '',
+     buildDate: 'yyyy-MM-dd...',
+     buildNumber: 'xxx',
+     state: 'RUNNING'
   }
 ```
 
