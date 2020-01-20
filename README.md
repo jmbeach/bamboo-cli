@@ -28,9 +28,33 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`bamboo-cli conf [KEY] [VALUE]`](#bamboo-cli-conf-key-value)
 * [`bamboo-cli currentuser`](#bamboo-cli-currentuser)
-* [`bamboo-cli hello [FILE]`](#bamboo-cli-hello-file)
 * [`bamboo-cli help [COMMAND]`](#bamboo-cli-help-command)
+
+## `bamboo-cli conf [KEY] [VALUE]`
+
+manage configuration
+
+```
+USAGE
+  $ bamboo-cli conf [KEY] [VALUE]
+
+ARGUMENTS
+  KEY    key of the config
+  VALUE  value of the config
+
+OPTIONS
+  -d, --cwd=cwd          config file location
+  -d, --delete           delete?
+  -h, --help             show CLI help
+  -k, --key=key          key of the config
+  -n, --name=name        config file name
+  -p, --project=project  project name
+  -v, --value=value      value of the config
+```
+
+_See code: [conf-cli](https://github.com/natzcam/conf-cli/blob/v0.1.9/src\commands\conf.ts)_
 
 ## `bamboo-cli currentuser`
 
@@ -42,30 +66,14 @@ USAGE
 
 EXAMPLE
   $ bamboo-cli currentuser
-  hello world from ./src/hello.ts!
+  {
+     name: 'jaredbeachdesign@gmail.com',
+     fullName: 'Jared Beach',
+     email: 'jaredbeachdesign@gmail.com'
+  }
 ```
 
 _See code: [src\commands\currentuser.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\currentuser.ts)_
-
-## `bamboo-cli hello [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ bamboo-cli hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ bamboo-cli hello
-  hello world from ./src/hello.ts!
-```
-
-_See code: [src\commands\hello.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\hello.ts)_
 
 ## `bamboo-cli help [COMMAND]`
 
