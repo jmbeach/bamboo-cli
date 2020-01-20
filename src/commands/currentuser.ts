@@ -1,4 +1,5 @@
 import BambooClientCommand from '../bamboo-client-command'
+import stringify = require('json-stringify-safe');
 
 export default class CurrentUser extends BambooClientCommand {
   static description = 'get the current user';
@@ -8,9 +9,9 @@ export default class CurrentUser extends BambooClientCommand {
   static examples = [
     `$ bamboo-cli currentuser
 {
-  name: 'jaredbeachdesign@gmail.com',
-  fullName: 'Jared Beach',
-  email: 'jaredbeachdesign@gmail.com'
+  name: 'user@domain.com',
+  fullName: 'John Smith',
+  email: 'user@domain.com'
 }
 `,
   ]
@@ -18,7 +19,7 @@ export default class CurrentUser extends BambooClientCommand {
   async run() {
     return this.client?.getCurrentUser()
       .then(userData => {
-        this.log(userData.data)
+        this.log(stringify(userData.data, null, 2))
       }).catch(this.handleError)
   }
 }
