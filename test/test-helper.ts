@@ -1,4 +1,6 @@
 import * as proxyquire from 'proxyquire'
+import * as sinon from 'sinon'
+
 function fakeConfigurationParserFactory(url: string, tabCount: number) {
   return class FakeConfigurationParser {
     static parse() {
@@ -24,6 +26,10 @@ export default class TestHelper {
     }).default
     const Command = proxyquire.noCallThru()(`../src/commands/${commandName}`, {'../bamboo-client-command': {default: BambooClientCommandClone}}).default
     const cmd = new Command()
+    sinon.stub(cmd, 'error').callsFake((err: any) => {
+      cmd.stderr.push(err)
+    })
+
     cmd.log = (message: any) => {
       if (typeof message !== 'string') {
         return

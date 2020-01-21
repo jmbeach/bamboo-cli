@@ -20,4 +20,15 @@ describe('currentuser', () => {
       api.done()
     })
   })
+
+  it('currentuser throws error if unauthenticated', async () => {
+    const cmd = await TestHelper.getCommand('currentuser')
+    const api = nock(TestHelper.baseUrl).get('/rest/api/latest/currentUser.json').reply(401)
+
+    return cmd.run()
+    .then(() => {
+      expect(cmd.stderr).to.contain('Username or password incorrect.')
+      api.done()
+    })
+  })
 })
