@@ -1,27 +1,23 @@
-import {expect, test} from '@oclif/test'
+import {expect} from '@oclif/test'
 import stringify = require('json-stringify-safe');
-import ConfigParser from '../../src/configuration-parser'
-const config = ConfigParser.parse()
+import TestHelper from '../test-helper'
+import nock = require('nock')
 
 describe('currentuser', () => {
-  const expected = {
+  const mock = {
     name: 'user@domain.com',
     fullName: 'John Smith',
     email: 'user@domain.com',
   }
 
-  test
-  .nock(config.bambooUrl, api => api.get('/rest/api/latest/currentUser.json').reply(200, expected))
-  .stdout()
-  .command(['currentuser'])
-  .it('runs currentuser', ctx => {
-    expect(ctx.stdout).to.contain(stringify(expected, null, config.tabCount))
-  })
+  it('runs currentuser', async () => {
+    const cmd = await TestHelper.getCommand('currentuser')
+    const api = nock(TestHelper.baseUrl).get('/rest/api/latest/currentUser.json').reply(200, mock)
 
-  test
-  .nock(config.bambooUrl, api => api.get('/rest/api/latest/currentUser.json').reply(401))
-  .stdout()
-  .command(['currentuser'])
-  .exit(2)
-  .it('throws error when currentuser unauthenticated')
+    return cmd.run()
+    .then(() => {
+      expect(cmd.stdout).to.contain(stringify(mock, null, TestHelper.tabCount))
+      api.done()
+    })
+  })
 })

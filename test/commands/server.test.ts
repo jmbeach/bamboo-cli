@@ -1,7 +1,7 @@
-import {expect, test} from '@oclif/test'
+import {expect} from '@oclif/test'
 import stringify = require('json-stringify-safe');
-import ConfigParser from '../../src/configuration-parser'
-const config = ConfigParser.parse()
+import nock = require('nock')
+import TestHelper from '../test-helper'
 
 describe('server', () => {
   const mock = {
@@ -12,11 +12,14 @@ describe('server', () => {
     state: 'RUNNING',
   }
 
-  test
-  .nock(config.bambooUrl, api => api.get('/rest/api/latest/info.json').reply(200, mock))
-  .stdout()
-  .command(['server'])
-  .it('runs server', ctx => {
-    expect(ctx.stdout).to.contain(stringify(mock, null, config.tabCount))
+  it('runs server', async () => {
+    const cmd = await TestHelper.getCommand('server')
+    const api = nock(TestHelper.baseUrl).get('/rest/api/latest/info.json').reply(200, mock)
+
+    return cmd.run()
+    .then(() => {
+      expect(cmd.stdout).to.contain(stringify(mock, null, TestHelper.tabCount))
+      api.done()
+    })
   })
 })

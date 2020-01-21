@@ -5,14 +5,14 @@ export default class TestHelper {
 
   static tabCount = 4
 
-  static async getCommand(commandName: string) {
+  static async getCommand(commandName: string, argv?: Array<any>) {
     const Command = proxyquire.noCallThru()(`../src/commands/${commandName}`, {'../bamboo-client-command': {default: FakeCommand}}).default
     const cmd = new Command()
     cmd.tabCount = TestHelper.tabCount
     cmd.config = {
       debug: false,
     }
-    cmd.argv = []
+    cmd.argv = argv || []
     await cmd.init()
     return cmd
   }
