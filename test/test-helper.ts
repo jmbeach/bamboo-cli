@@ -1,19 +1,6 @@
 import * as proxyquire from 'proxyquire'
 import * as sinon from 'sinon'
-
-function fakeConfigurationParserFactory(url: string, tabCount: number) {
-  return class FakeConfigurationParser {
-    static parse() {
-      return {
-        bambooUrl: url,
-        errorMessages: [],
-        password: 'test1234',
-        tabCount: tabCount,
-        username: 'test',
-      }
-    }
-  }
-}
+import fakeConfigurationParserFactory from './fake-configuration-parser'
 
 export default class TestHelper {
   static baseUrl = 'http://localhost:54663'
@@ -22,7 +9,7 @@ export default class TestHelper {
 
   static async getCommand(commandName: string, argv?: Array<any>) {
     const BambooClientCommandClone = proxyquire('../src/bamboo-client-command', {
-      './configuration-parser': {default: fakeConfigurationParserFactory(TestHelper.baseUrl, TestHelper.tabCount)},
+      './configuration-parser': fakeConfigurationParserFactory(TestHelper.baseUrl, TestHelper.tabCount),
     }).default
     const Command = proxyquire.noCallThru()(`../src/commands/${commandName}`, {'../bamboo-client-command': {default: BambooClientCommandClone}}).default
     const cmd = new Command()
