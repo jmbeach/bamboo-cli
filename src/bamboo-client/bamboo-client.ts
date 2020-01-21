@@ -39,4 +39,8 @@ export default class BambooClient {
   getServerInfo() {
     return this._axios.get('/rest/api/latest/info.json')
   }
+
+  queue(key: string) {
+    return this._axios.post(`/rest/api/latest/queue/${key}`)
+  }
 }

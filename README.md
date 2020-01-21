@@ -46,6 +46,7 @@ USAGE
 * [`bamboo-cli help [COMMAND]`](#bamboo-cli-help-command)
 * [`bamboo-cli plans`](#bamboo-cli-plans)
 * [`bamboo-cli projects`](#bamboo-cli-projects)
+* [`bamboo-cli queue`](#bamboo-cli-queue)
 * [`bamboo-cli server`](#bamboo-cli-server)
 
 ## `bamboo-cli conf [KEY] [VALUE]`
@@ -139,6 +140,23 @@ EXAMPLE
 ```
 
 _See code: [src\commands\projects.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\projects.ts)_
+
+## `bamboo-cli queue`
+
+queue a build
+
+```
+USAGE
+  $ bamboo-cli queue
+
+OPTIONS
+  --key=key  (required)
+
+EXAMPLE
+  $ bamboo-cli queue <buildKey>
+```
+
+_See code: [src\commands\queue.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\queue.ts)_
 
 ## `bamboo-cli server`
 
