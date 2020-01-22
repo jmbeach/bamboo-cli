@@ -24,6 +24,10 @@ export default class BambooClient {
     })
   }
 
+  deploy(environmentId: string, versionId: string) {
+    return this._axios.post(`/rest/api/latest/queue/deployment/?environmentId=${environmentId}&versionId=${versionId}`, {})
+  }
+
   getAllProjects() {
     return this._axios.get('/rest/api/latest/deploy/project/all.json')
   }

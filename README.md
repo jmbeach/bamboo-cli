@@ -43,6 +43,7 @@ USAGE
 <!-- commands -->
 * [`bamboo-cli conf [KEY] [VALUE]`](#bamboo-cli-conf-key-value)
 * [`bamboo-cli currentuser`](#bamboo-cli-currentuser)
+* [`bamboo-cli deploy`](#bamboo-cli-deploy)
 * [`bamboo-cli help [COMMAND]`](#bamboo-cli-help-command)
 * [`bamboo-cli plans`](#bamboo-cli-plans)
 * [`bamboo-cli projects`](#bamboo-cli-projects)
@@ -92,6 +93,24 @@ EXAMPLE
 ```
 
 _See code: [src\commands\currentuser.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\currentuser.ts)_
+
+## `bamboo-cli deploy`
+
+deploy a build
+
+```
+USAGE
+  $ bamboo-cli deploy
+
+OPTIONS
+  -e, --env=env          (required) environment ID
+  -v, --version=version  (required) build version ID
+
+EXAMPLE
+  $ bamboo-cli deploy -e 123 -v 456
+```
+
+_See code: [src\commands\deploy.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\deploy.ts)_
 
 ## `bamboo-cli help [COMMAND]`
 
