@@ -1,5 +1,7 @@
 import Conf = require('conf');
-const config = new Conf()
+const config = new Conf({
+  projectName: 'bamboo-cli',
+})
 
 export default class ConfigurationParser {
   static parse() {

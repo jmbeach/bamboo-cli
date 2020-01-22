@@ -32,7 +32,7 @@ $ npm install -g bamboo-cli
 $ bamboo-cli COMMAND
 running command...
 $ bamboo-cli (-v|--version|version)
-bamboo-cli/0.0.0 win32-x64 node-v12.14.1
+bamboo-cli/0.0.0 win32-x64 node-v8.16.2
 $ bamboo-cli --help [COMMAND]
 USAGE
   $ bamboo-cli COMMAND
@@ -47,6 +47,7 @@ USAGE
 * [`bamboo-cli plans`](#bamboo-cli-plans)
 * [`bamboo-cli projects`](#bamboo-cli-projects)
 * [`bamboo-cli queue`](#bamboo-cli-queue)
+* [`bamboo-cli releases`](#bamboo-cli-releases)
 * [`bamboo-cli server`](#bamboo-cli-server)
 
 ## `bamboo-cli conf [KEY] [VALUE]`
@@ -157,6 +158,23 @@ EXAMPLE
 ```
 
 _See code: [src\commands\queue.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\queue.ts)_
+
+## `bamboo-cli releases`
+
+gets releases available for a project
+
+```
+USAGE
+  $ bamboo-cli releases
+
+OPTIONS
+  -p, --project=project  (required) project ID
+
+EXAMPLE
+  $ bamboo-cli releases --project <project-id>
+```
+
+_See code: [src\commands\releases.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\releases.ts)_
 
 ## `bamboo-cli server`
 
