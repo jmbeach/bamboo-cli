@@ -15,8 +15,8 @@ describe('queue', () => {
     },
   }
 
-  it('runs queue --key example', async () => {
-    const cmd = await TestHelper.getCommand('queue', ['--key', 'example'])
+  it('runs queue example', async () => {
+    const cmd = await TestHelper.getCommand('queue', ['example'])
     const api = nock(TestHelper.baseUrl).post('/rest/api/latest/queue/example').reply(200, mock)
     return cmd.run()
     .then(() => {

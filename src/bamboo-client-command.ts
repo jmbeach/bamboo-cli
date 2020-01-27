@@ -8,9 +8,9 @@ export default abstract class BambooClientCommand extends Command {
   tabCount: string | number | null = null;
 
   handleError = (err: any) => {
-    if (err.response.status === 401) {
+    if (err.response && err.response.status === 401) {
       this.error('Username or password incorrect.')
-    } else if (err.response.data.message) {
+    } else if (err.response && err.response.data.message) {
       this.error('Message: ' + err.response.data.message)
     } else {
       this.error('Unexpected error ocurred')

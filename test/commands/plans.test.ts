@@ -31,7 +31,7 @@ describe('plans', () => {
   }
 
   it('runs plans', async () => {
-    const cmd = await TestHelper.getCommand('plans')
+    const cmd = await TestHelper.getCommand('plans', ['--json'])
     const api = nock(TestHelper.baseUrl).get('/rest/api/latest/plan.json').reply(200, mock)
 
     return cmd.run()
@@ -41,8 +41,20 @@ describe('plans', () => {
     })
   })
 
+  it('runs plans', async () => {
+    const cmd = await TestHelper.getCommand('plans')
+    const api = nock(TestHelper.baseUrl).get('/rest/api/latest/plan.json').reply(200, mock)
+
+    return cmd.run()
+    .then(() => {
+      // eslint-disable-next-line unicorn/escape-case
+      expect(cmd.stdout.join(' ')).to.contain('\u001b[94mplan\u001b[39m: \u001b[92mplan 1 - enabled\u001b[39m')
+      api.done()
+    })
+  })
+
   it('runs plans --enabled', async () => {
-    const cmd = await TestHelper.getCommand('plans', ['--enabled'])
+    const cmd = await TestHelper.getCommand('plans', ['--enabled', '--json'])
     const api = nock(TestHelper.baseUrl).get('/rest/api/latest/plan.json').reply(200, mock)
 
     return cmd.run()
