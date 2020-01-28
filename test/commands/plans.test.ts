@@ -47,8 +47,7 @@ describe('plans', () => {
 
     return cmd.run()
     .then(() => {
-      // eslint-disable-next-line unicorn/escape-case
-      expect(cmd.stdout.join(' ')).to.contain('\u001b[94mplan\u001b[39m: \u001b[92mplan 1 - enabled\u001b[39m')
+      expect(cmd.stdout).to.contain('plan: plan 1 - enabled')
       api.done()
     })
   })
