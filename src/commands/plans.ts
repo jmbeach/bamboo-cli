@@ -1,6 +1,6 @@
 import BambooClientCommand from '../bamboo-client-command'
-import stringify = require('json-stringify-safe');
 import color from '@oclif/color'
+import stringify = require('json-stringify-safe');
 import {flags} from '@oclif/command'
 
 export default class Plans extends BambooClientCommand {
@@ -16,6 +16,14 @@ export default class Plans extends BambooClientCommand {
     json: flags.boolean({char: 'j'}),
   }
 
+  loggedProperties = [
+    'shortName',
+    'key',
+    'enabled',
+    'planKey.key',
+    'link.href',
+  ]
+
   async run() {
     const {flags} = this.parse(Plans)
     return this.client?.getAllPlans()
@@ -30,24 +38,9 @@ export default class Plans extends BambooClientCommand {
           return
         }
 
-        const loggedProperties = [
-          'shortName',
-          'key',
-          'enabled',
-          'planKey.key',
-          'link.href',
-        ]
         for (const plan of data.plans.plan) {
           this.log(`${color.blue('plan')}: ${color.greenBright(plan.name)}`)
-          for (const key of loggedProperties) {
-            const keyParts = key.split('.')
-            let value = plan[keyParts[0]]
-            for (let i = 1; i < keyParts.length; i++) {
-              value = value[keyParts[i]]
-            }
-
-            this.log(`  ${color.blueBright(key)}: ${value}`)
-          }
+          this.logPretty(plan)
         }
       }).catch(this.handleError)
   }

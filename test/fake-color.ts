@@ -3,6 +3,10 @@ export class FakeColor {
     return message
   }
 
+  static blueBright(message: string) {
+    return message
+  }
+
   static greenBright(message: string) {
     return message
   }

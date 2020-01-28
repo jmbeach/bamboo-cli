@@ -11,6 +11,7 @@ export default class TestHelper {
   static async getCommand(commandName: string, argv?: Array<any>) {
     const BambooClientCommandClone = proxyquire('../src/bamboo-client-command', {
       './configuration-parser': fakeConfigurationParserFactory(TestHelper.baseUrl, TestHelper.tabCount),
+      '@oclif/color': {default: FakeColor},
     }).default
     const Command = proxyquire.noCallThru()(`../src/commands/${commandName}`, {
       '../bamboo-client-command': {default: BambooClientCommandClone},
