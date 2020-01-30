@@ -40,7 +40,7 @@ $ npm install -g bamboo-cli
 $ bamboo-cli COMMAND
 running command...
 $ bamboo-cli (-v|--version|version)
-bamboo-cli/0.0.0 win32-x64 node-v8.16.2
+bamboo-cli/0.0.0 win32-x64 node-v12.14.1
 $ bamboo-cli --help [COMMAND]
 USAGE
   $ bamboo-cli COMMAND
@@ -93,6 +93,7 @@ USAGE
   $ bamboo-cli builds
 
 OPTIONS
+  -f, --failed
   -j, --json
 
 EXAMPLE
