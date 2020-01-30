@@ -7,6 +7,10 @@ import {AxiosResponse} from 'axios'
 
 export interface LogPrettyField {
   key: string;
+  customFormat: null | {
+    ifValue: any;
+    color: typeof color;
+  };
   display: string;
   type: null | 'h1';
 }
@@ -60,8 +64,14 @@ export default abstract class BambooClientCommand extends Command {
     const logObject = (obj: any) => {
       for (const key of this.loggedProperties) {
         if (typeof key === 'object') {
+          const displayName = key.display ? key.display : key.key
+          const value = getObjectFromKey(key.key, obj)
           if (key.type && key.type === 'h1') {
-            this.log(`${color.blue(key.display)}: ${color.greenBright(getObjectFromKey(key.key, obj))}`)
+            this.log(`${color.blue(displayName)}: ${color.greenBright(value)}`)
+          } else if (key.customFormat && value === key.customFormat.ifValue) {
+            this.log(`  ${color.blueBright(displayName)}: ${key.customFormat.color(value)}`)
+          } else {
+            this.log(`  ${color.blueBright(displayName)}: ${value}`)
           }
         } else {
           const value = getObjectFromKey(key, obj)
