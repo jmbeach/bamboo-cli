@@ -71,10 +71,13 @@ export default class TestHelper {
       './configuration-parser': fakeConfigurationParserFactory(TestHelper.baseUrl, TestHelper.tabCount),
       '@oclif/color': {default: FakeColor},
     }).default
-    const Command = proxyquire.noCallThru()(`../src/commands/${commandName}`, {
-      '../bamboo-client-command': {default: BambooClientCommandClone},
+    const pathParts = commandName.split('/')
+    const dirsUp = pathParts.map(() => '../').join('')
+    const proxies = {
       '@oclif/color': {default: FakeColor},
-    }).default
+    } as any
+    proxies[`${dirsUp}bamboo-client-command`] = {default: BambooClientCommandClone}
+    const Command = proxyquire.noCallThru()(`../src/commands/${commandName}`, proxies).default
     const cmd = new Command()
     sinon.stub(cmd, 'error').callsFake((err: any) => {
       cmd.stderr.push(err)
