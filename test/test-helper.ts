@@ -52,6 +52,20 @@ export default class TestHelper {
     }
   }
 
+  static getMockProject() {
+    return {
+      id: faker.random.number(1000),
+      oid: faker.random.alphaNumeric(20),
+      key: {
+        key: faker.random.alphaNumeric(10),
+      },
+      name: faker.random.alphaNumeric(50),
+      planKey: {
+        key: faker.random.alphaNumeric(10),
+      },
+    }
+  }
+
   static async getCommand(commandName: string, argv?: Array<any>) {
     const BambooClientCommandClone = proxyquire('../src/bamboo-client-command', {
       './configuration-parser': fakeConfigurationParserFactory(TestHelper.baseUrl, TestHelper.tabCount),
