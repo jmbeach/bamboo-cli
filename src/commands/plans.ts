@@ -1,6 +1,4 @@
 import BambooClientCommand, {LogPrettyField} from '../bamboo-client-command'
-import color from '@oclif/color'
-import stringify = require('json-stringify-safe');
 import {flags} from '@oclif/command'
 
 export default class Plans extends BambooClientCommand {
