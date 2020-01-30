@@ -14,7 +14,7 @@ describe('builds', () => {
   }
 
   it('runs builds', async () => {
-    const cmd = await TestHelper.getCommand('builds', ['--json'])
+    const cmd = await TestHelper.getCommand('build/results', ['--json'])
     const api = nock(TestHelper.baseUrl).get('/rest/api/latest/result').reply(200, mock)
 
     return cmd.run()

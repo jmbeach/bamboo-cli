@@ -40,7 +40,7 @@ $ npm install -g bamboo-cli
 $ bamboo-cli COMMAND
 running command...
 $ bamboo-cli (-v|--version|version)
-bamboo-cli/0.0.0 win32-x64 node-v12.14.1
+bamboo-cli/0.0.0 win32-x64 node-v8.16.2
 $ bamboo-cli --help [COMMAND]
 USAGE
   $ bamboo-cli COMMAND
@@ -73,7 +73,8 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`bamboo-cli builds`](#bamboo-cli-builds)
+* [`bamboo-cli build`](#bamboo-cli-build)
+* [`bamboo-cli build:results`](#bamboo-cli-buildresults)
 * [`bamboo-cli conf [KEY] [VALUE]`](#bamboo-cli-conf-key-value)
 * [`bamboo-cli currentuser`](#bamboo-cli-currentuser)
 * [`bamboo-cli deploy`](#bamboo-cli-deploy)
@@ -84,23 +85,34 @@ USAGE
 * [`bamboo-cli releases`](#bamboo-cli-releases)
 * [`bamboo-cli server`](#bamboo-cli-server)
 
-## `bamboo-cli builds`
+## `bamboo-cli build`
+
+commands for getting build results/status
+
+```
+USAGE
+  $ bamboo-cli build
+```
+
+_See code: [src\commands\build.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\build.ts)_
+
+## `bamboo-cli build:results`
 
 get info on builds
 
 ```
 USAGE
-  $ bamboo-cli builds
+  $ bamboo-cli build:results
 
 OPTIONS
   -f, --failed
   -j, --json
 
 EXAMPLE
-  $ bamboo-cli builds
+  $ bamboo-cli build results
 ```
 
-_See code: [src\commands\builds.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\builds.ts)_
+_See code: [src\commands\build\results.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\build\results.ts)_
 
 ## `bamboo-cli conf [KEY] [VALUE]`
 
@@ -206,6 +218,9 @@ get all projects
 ```
 USAGE
   $ bamboo-cli projects
+
+OPTIONS
+  -j, --json
 
 EXAMPLE
   $ bamboo-cli projects

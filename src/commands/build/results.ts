@@ -1,12 +1,12 @@
-import BambooClientCommand, {LogPrettyField} from '../bamboo-client-command'
+import BambooClientCommand, {LogPrettyField} from '../../bamboo-client-command'
 import {flags} from '@oclif/command'
 import color from '@oclif/color'
 
-export default class Builds extends BambooClientCommand {
+export default class Results extends BambooClientCommand {
   static description = 'get info on builds';
 
   static examples = [
-    '$ bamboo-cli builds',
+    '$ bamboo-cli build results',
   ]
 
   static flags = {
@@ -25,7 +25,7 @@ export default class Builds extends BambooClientCommand {
   ]
 
   async run() {
-    const {flags} = this.parse(Builds)
+    const {flags} = this.parse(Results)
     return this.client?.getBuilds()
       .then(res => {
         const data = res.data

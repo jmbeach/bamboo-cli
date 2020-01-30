@@ -68,6 +68,11 @@
     ],
     "hooks": {
       "init": "./lib/hooks/init/init"
+    },
+    "topics": {
+      "build": {
+        "description": "commands for getting build results/status"
+      }
     }
   },
   "repository": "jmbeach/bamboo-cli",

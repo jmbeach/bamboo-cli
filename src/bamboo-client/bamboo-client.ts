@@ -40,8 +40,13 @@ export default class BambooClient {
     return this._axios.get('/rest/api/latest/plan.json')
   }
 
-  getBuilds() {
-    return this._axios.get('/rest/api/latest/result')
+  getBuilds(planKey: string | null = null, buildNumber: string | null = null) {
+    let url = '/rest/api/latest/result'
+    if (planKey) {
+      url = `${url}/${planKey}/${buildNumber}`
+    }
+
+    return this._axios.get(url)
   }
 
   getServerInfo() {
