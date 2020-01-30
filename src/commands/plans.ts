@@ -1,4 +1,4 @@
-import BambooClientCommand from '../bamboo-client-command'
+import BambooClientCommand, {LogPrettyField} from '../bamboo-client-command'
 import color from '@oclif/color'
 import stringify = require('json-stringify-safe');
 import {flags} from '@oclif/command'
@@ -17,6 +17,7 @@ export default class Plans extends BambooClientCommand {
   }
 
   loggedProperties = [
+    {key: 'name', display: 'plan', type: 'h1'} as LogPrettyField,
     'shortName',
     'key',
     'enabled',
@@ -33,15 +34,7 @@ export default class Plans extends BambooClientCommand {
           data.plans.plan = data.plans.plan.filter((p: any) => p.enabled !== false)
         }
 
-        if (flags.json) {
-          this.log(stringify(data, null, this.tabCount))
-          return
-        }
-
-        for (const plan of data.plans.plan) {
-          this.log(`${color.blue('plan')}: ${color.greenBright(plan.name)}`)
-          this.logPretty(plan)
-        }
+        this.handleCommonFlags(flags, res, 'plans.plan')
       }).catch(this.handleError)
   }
 }

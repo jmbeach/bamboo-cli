@@ -1,5 +1,4 @@
 import BambooClientCommand from '../bamboo-client-command'
-import stringify = require('json-stringify-safe');
 import {flags} from '@oclif/command'
 
 export default class Queue extends BambooClientCommand {
@@ -33,11 +32,7 @@ export default class Queue extends BambooClientCommand {
     const {flags, args} = this.parse(Queue)
     return this.client?.queue(args.planKey)
       .then(res => {
-        if (flags.json) {
-          this.log(stringify(res.data, null, this.tabCount))
-        } else {
-          this.logPretty(res.data)
-        }
+        this.handleCommonFlags(flags, res)
       }).catch(this.handleError)
   }
 }

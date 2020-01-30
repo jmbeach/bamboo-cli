@@ -17,6 +17,10 @@ command-line tool to interact with Atlassian Bamboo
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
+* [Configuration](#configuration)
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
 
 # Configuration
 
@@ -31,6 +35,18 @@ The following configuration settings are available:
 
 # Usage
 <!-- usage -->
+```sh-session
+$ npm install -g bamboo-cli
+$ bamboo-cli COMMAND
+running command...
+$ bamboo-cli (-v|--version|version)
+bamboo-cli/0.0.0 win32-x64 node-v8.16.2
+$ bamboo-cli --help [COMMAND]
+USAGE
+  $ bamboo-cli COMMAND
+...
+```
+<!-- usagestop -->
 ```sh-session
 $ npm install -g bamboo-cli
 $ bamboo-cli COMMAND
@@ -57,6 +73,203 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`bamboo-cli builds`](#bamboo-cli-builds)
+* [`bamboo-cli conf [KEY] [VALUE]`](#bamboo-cli-conf-key-value)
+* [`bamboo-cli currentuser`](#bamboo-cli-currentuser)
+* [`bamboo-cli deploy`](#bamboo-cli-deploy)
+* [`bamboo-cli help [COMMAND]`](#bamboo-cli-help-command)
+* [`bamboo-cli plans`](#bamboo-cli-plans)
+* [`bamboo-cli projects`](#bamboo-cli-projects)
+* [`bamboo-cli queue [PLANKEY]`](#bamboo-cli-queue-plankey)
+* [`bamboo-cli releases`](#bamboo-cli-releases)
+* [`bamboo-cli server`](#bamboo-cli-server)
+
+## `bamboo-cli builds`
+
+get info on builds
+
+```
+USAGE
+  $ bamboo-cli builds
+
+OPTIONS
+  -j, --json
+
+EXAMPLE
+  $ bamboo-cli builds
+```
+
+_See code: [src\commands\builds.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\builds.ts)_
+
+## `bamboo-cli conf [KEY] [VALUE]`
+
+manage configuration
+
+```
+USAGE
+  $ bamboo-cli conf [KEY] [VALUE]
+
+ARGUMENTS
+  KEY    key of the config
+  VALUE  value of the config
+
+OPTIONS
+  -d, --cwd=cwd          config file location
+  -d, --delete           delete?
+  -h, --help             show CLI help
+  -k, --key=key          key of the config
+  -n, --name=name        config file name
+  -p, --project=project  project name
+  -v, --value=value      value of the config
+```
+
+_See code: [conf-cli](https://github.com/natzcam/conf-cli/blob/v0.1.9/src\commands\conf.ts)_
+
+## `bamboo-cli currentuser`
+
+get the current user
+
+```
+USAGE
+  $ bamboo-cli currentuser
+
+EXAMPLE
+  $ bamboo-cli currentuser
+  {
+     name: 'user@domain.com',
+     fullName: 'John Smith',
+     email: 'user@domain.com'
+  }
+```
+
+_See code: [src\commands\currentuser.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\currentuser.ts)_
+
+## `bamboo-cli deploy`
+
+deploy a build
+
+```
+USAGE
+  $ bamboo-cli deploy
+
+OPTIONS
+  -e, --env=env          (required) environment ID
+  -v, --version=version  (required) build version ID
+
+EXAMPLE
+  $ bamboo-cli deploy -e 123 -v 456
+```
+
+_See code: [src\commands\deploy.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\deploy.ts)_
+
+## `bamboo-cli help [COMMAND]`
+
+display help for bamboo-cli
+
+```
+USAGE
+  $ bamboo-cli help [COMMAND]
+
+ARGUMENTS
+  COMMAND  command to show help for
+
+OPTIONS
+  --all  see all commands in CLI
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src\commands\help.ts)_
+
+## `bamboo-cli plans`
+
+get all plans
+
+```
+USAGE
+  $ bamboo-cli plans
+
+OPTIONS
+  -e, --enabled
+  -j, --json
+
+EXAMPLES
+  $ bamboo-cli plans
+  $ bamboo-cli plans --enabled
+```
+
+_See code: [src\commands\plans.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\plans.ts)_
+
+## `bamboo-cli projects`
+
+get all projects
+
+```
+USAGE
+  $ bamboo-cli projects
+
+EXAMPLE
+  $ bamboo-cli projects
+```
+
+_See code: [src\commands\projects.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\projects.ts)_
+
+## `bamboo-cli queue [PLANKEY]`
+
+queue a build
+
+```
+USAGE
+  $ bamboo-cli queue [PLANKEY]
+
+ARGUMENTS
+  PLANKEY  get plan key by running "bamboo-cli plans".
+
+OPTIONS
+  -j, --json
+
+EXAMPLE
+  $ bamboo-cli queue <planKey>
+```
+
+_See code: [src\commands\queue.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\queue.ts)_
+
+## `bamboo-cli releases`
+
+gets releases available for a project
+
+```
+USAGE
+  $ bamboo-cli releases
+
+OPTIONS
+  -p, --project=project  (required) project ID
+
+EXAMPLE
+  $ bamboo-cli releases --project <project-id>
+```
+
+_See code: [src\commands\releases.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\releases.ts)_
+
+## `bamboo-cli server`
+
+get server info
+
+```
+USAGE
+  $ bamboo-cli server
+
+EXAMPLE
+  $ bamboo-cli server
+  {
+     version: 'x.x.x',
+     edition: '',
+     buildDate: 'yyyy-MM-dd...',
+     buildNumber: 'xxx',
+     state: 'RUNNING'
+  }
+```
+
+_See code: [src\commands\server.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\server.ts)_
+<!-- commandsstop -->
 * [`bamboo-cli conf [KEY] [VALUE]`](#bamboo-cli-conf-key-value)
 * [`bamboo-cli currentuser`](#bamboo-cli-currentuser)
 * [`bamboo-cli deploy`](#bamboo-cli-deploy)

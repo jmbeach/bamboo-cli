@@ -40,6 +40,10 @@ export default class BambooClient {
     return this._axios.get('/rest/api/latest/plan.json')
   }
 
+  getBuilds() {
+    return this._axios.get('/rest/api/latest/result')
+  }
+
   getServerInfo() {
     return this._axios.get('/rest/api/latest/info.json')
   }
