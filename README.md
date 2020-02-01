@@ -75,6 +75,7 @@ USAGE
 <!-- commands -->
 * [`bamboo-cli build`](#bamboo-cli-build)
 * [`bamboo-cli build:results`](#bamboo-cli-buildresults)
+* [`bamboo-cli build:status [PLANKEY] [BUILDNUMBER]`](#bamboo-cli-buildstatus-plankey-buildnumber)
 * [`bamboo-cli conf [KEY] [VALUE]`](#bamboo-cli-conf-key-value)
 * [`bamboo-cli currentuser`](#bamboo-cli-currentuser)
 * [`bamboo-cli deploy`](#bamboo-cli-deploy)
@@ -113,6 +114,27 @@ EXAMPLE
 ```
 
 _See code: [src\commands\build\results.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\build\results.ts)_
+
+## `bamboo-cli build:status [PLANKEY] [BUILDNUMBER]`
+
+get info on builds
+
+```
+USAGE
+  $ bamboo-cli build:status [PLANKEY] [BUILDNUMBER]
+
+ARGUMENTS
+  PLANKEY      plan key
+  BUILDNUMBER  build number
+
+OPTIONS
+  -j, --json
+
+EXAMPLE
+  $ bamboo-cli build results
+```
+
+_See code: [src\commands\build\status.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\build\status.ts)_
 
 ## `bamboo-cli conf [KEY] [VALUE]`
 
