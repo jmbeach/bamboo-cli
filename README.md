@@ -157,6 +157,7 @@ ARGUMENTS
 
 OPTIONS
   -j, --json
+  -p, --poll
 
 EXAMPLE
   $ bamboo-cli build status <projectKey> <buildNumber>
