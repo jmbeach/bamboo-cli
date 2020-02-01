@@ -4,7 +4,7 @@ import nock = require('nock')
 import TestHelper from '../test-helper'
 import MockDataHelper from '../mock-data-helper'
 
-describe('builds', () => {
+describe('build:results', () => {
   const mock = {
     results: {
       result: [
@@ -14,7 +14,7 @@ describe('builds', () => {
     },
   }
 
-  it('runs builds', async () => {
+  it('runs build:results', async () => {
     const cmd = await TestHelper.getCommand('build/results', ['--json'])
     const api = nock(TestHelper.baseUrl).get('/rest/api/latest/result').reply(200, mock)
 
@@ -25,7 +25,7 @@ describe('builds', () => {
     })
   })
 
-  it('runs builds pretty', async () => {
+  it('runs build:results pretty', async () => {
     const cmd = await TestHelper.getCommand('build/results')
     const api = nock(TestHelper.baseUrl).get('/rest/api/latest/result').reply(200, mock)
 

@@ -36,7 +36,7 @@ export default abstract class BambooClientCommand extends Command {
     } else if (err.response && err.response.data.message) {
       this.error('Message: ' + err.response.data.message)
     } else {
-      this.error('Unexpected error ocurred' + err)
+      this.error('Unexpected error ocurred: ' + err.message)
     }
   }
 
