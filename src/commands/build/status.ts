@@ -1,4 +1,4 @@
-import BambooClientCommand from '../../bamboo-client-command'
+import BambooClientCommand, {LogPrettyField} from '../../bamboo-client-command'
 import {flags} from '@oclif/command'
 
 export default class Status extends BambooClientCommand {
@@ -21,6 +21,13 @@ export default class Status extends BambooClientCommand {
       name: 'buildNumber',
       description: 'build number',
     },
+  ]
+
+  loggedProperties = [
+    {key: 'planName', display: 'plan', type: 'h1'} as LogPrettyField,
+    'number',
+    {key: 'lifeCycleState', display: 'state'} as LogPrettyField,
+    {key: 'progress.percentageCompletedPretty', display: 'progress'} as LogPrettyField,
   ]
 
   async run() {

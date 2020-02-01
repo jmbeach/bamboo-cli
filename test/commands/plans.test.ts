@@ -2,13 +2,14 @@ import {expect} from '@oclif/test'
 import stringify = require('json-stringify-safe');
 import nock = require('nock')
 import TestHelper from '../test-helper'
+import MockDataHelper from '../mock-data-helper'
 
 describe('builds', () => {
   const mock = {
     plans: {
       plan: [
-        TestHelper.getMockPlan(true),
-        TestHelper.getMockPlan(false),
+        MockDataHelper.getMockPlan(true),
+        MockDataHelper.getMockPlan(false),
       ],
     },
   }
