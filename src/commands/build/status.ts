@@ -34,21 +34,36 @@ export default class Status extends BambooClientCommand {
   ]
 
   async poll(planKey: string, buildNumber: string): Promise<any> {
-    return this.client?.getBuilds(planKey, buildNumber)
-    .then(res => {
-      const data = res.data as BuildStatus
-
-      if (data.lifeCycleState === 'Finished') {
-        if (data.state === 'Successful') {
-          this.action.stop(color.green('Build succeeded!'))
-        } else {
-          this.action.stop(color.red('Build failed!'))
+    return new Promise(resolver => {
+      let activeRequest = false
+      const intervalId = setInterval(() => {
+        // don't make concurrent requests to bamboo
+        if (activeRequest) {
+          return
         }
-      } else {
-        this.action.start(`polling build status for ${planKey}-${buildNumber}`, data.progress?.percentageCompletedPretty)
-        return this.poll(planKey, buildNumber)
-      }
-    }).catch(this.handleError)
+
+        activeRequest = true
+        return this.client?.getBuilds(planKey, buildNumber)
+        .then(res => {
+          activeRequest = false
+          const data = res.data as BuildStatus
+          if (data.lifeCycleState === 'Finished') {
+            clearInterval(intervalId)
+            if (data.state === 'Successful') {
+              this.action.stop(color.green('Build succeeded!'))
+            } else {
+              this.action.stop(color.red('Build failed!'))
+            }
+            resolver()
+          } else {
+            this.action.start(`polling build status for ${planKey}-${buildNumber}`, data.progress?.percentageCompletedPretty)
+          }
+        }).catch(err => {
+          clearInterval(intervalId)
+          this.handleError(err)
+        })
+      }, 250)
+    })
   }
 
   async run() {
