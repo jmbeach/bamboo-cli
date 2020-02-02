@@ -28,16 +28,12 @@ export default class BambooClient {
     return this._axios.post(`/rest/api/latest/queue/deployment/?environmentId=${environmentId}&versionId=${versionId}`, {})
   }
 
-  getAllProjects() {
-    return this._axios.get('/rest/api/latest/deploy/project/all.json')
-  }
-
-  getCurrentUser() {
-    return this._axios.get('/rest/api/latest/currentUser.json')
-  }
-
   getAllPlans() {
     return this._axios.get('/rest/api/latest/plan.json')
+  }
+
+  getAllProjects() {
+    return this._axios.get('/rest/api/latest/deploy/project/all.json')
   }
 
   getBuilds(planKey: string | null = null, buildNumber: string | null = null) {
@@ -49,12 +45,16 @@ export default class BambooClient {
     return this._axios.get(url)
   }
 
-  getServerInfo() {
-    return this._axios.get('/rest/api/latest/info.json')
+  getCurrentUser() {
+    return this._axios.get('/rest/api/latest/currentUser.json')
   }
 
   getReleases(projectId: string) {
     return this._axios.get(`/rest/api/latest/deploy/project/${projectId}/versions`)
+  }
+
+  getServerInfo() {
+    return this._axios.get('/rest/api/latest/info.json')
   }
 
   queue(key: string) {
