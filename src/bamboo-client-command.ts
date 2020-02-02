@@ -26,7 +26,7 @@ export default abstract class BambooClientCommand extends Command {
   action = cli.action;
 
   handleCommonFlags = (flags: any, res: AxiosResponse<any>, prettyRootKey: string | null = null) => {
-    if (flags.json) {
+    if (flags && flags.json) {
       this.log(stringify(res.data, null, this.tabCount))
     } else {
       this.logPretty(res.data, prettyRootKey)
