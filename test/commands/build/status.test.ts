@@ -52,4 +52,21 @@ describe('build:status', () => {
       expect(cmd.stdout.join(' ')).to.contain('Build succeeded!')
     })
   })
+
+  it('runs build:status poll (Failure)', async () => {
+    const cmd = await TestHelper.getCommand('build/status', ['-p', mock.plan.planKey.key, mock.number.toString()])
+    const finishedMock = MockDataHelper.getMockBuildStatus(true, 'Finished', 'Failed')
+    nock(TestHelper.baseUrl).get(mockUrl).once().reply(200, mock)
+    nock(TestHelper.baseUrl).get(mockUrl).twice().reply(200, finishedMock)
+    return cmd.run()
+    .then(() => {
+      let progress = ''
+      if (mock.progress) {
+        progress = mock.progress.percentageCompletedPretty
+      }
+
+      expect(cmd.stdout.join(' ')).to.contain(`polling build status for ${mock.plan.planKey.key}-${mock.number} ${progress}`)
+      expect(cmd.stdout.join(' ')).to.contain('Build failed!')
+    })
+  })
 })

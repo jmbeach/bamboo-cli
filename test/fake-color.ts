@@ -14,4 +14,8 @@ export class FakeColor {
   static green(message: string) {
     return message
   }
+
+  static red(message: string) {
+    return message
+  }
 }
