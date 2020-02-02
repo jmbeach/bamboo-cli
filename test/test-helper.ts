@@ -33,6 +33,22 @@ export default class TestHelper {
       cmd.stdout.push(message)
     }
 
+    cmd.action.start = (message: any, status: any) => {
+      if (typeof message !== 'string') {
+        return
+      }
+
+      cmd.stdout.push(`${message} ${status}`)
+    }
+
+    cmd.action.stop = (message: any) => {
+      if (typeof message !== 'string') {
+        return
+      }
+
+      cmd.stdout.push(message)
+    }
+
     cmd.stderr = []
     cmd.stdout = []
     cmd.tabCount = TestHelper.tabCount

@@ -4,6 +4,7 @@ import stringify = require('json-stringify-safe');
 import BambooClient from './bamboo-client/bamboo-client'
 import ConfigurationParser from './configuration-parser'
 import {AxiosResponse} from 'axios'
+import cli from 'cli-ux'
 
 export interface LogPrettyField {
   key: string;
@@ -21,6 +22,8 @@ export default abstract class BambooClientCommand extends Command {
   tabCount: string | number | null = null;
 
   loggedProperties: Array<string | LogPrettyField> = [];
+
+  action = cli.action;
 
   handleCommonFlags = (flags: any, res: AxiosResponse<any>, prettyRootKey: string | null = null) => {
     if (flags.json) {

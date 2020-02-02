@@ -1,4 +1,5 @@
 import faker = require('faker')
+import BuildStatus from '../src/interfaces/build-status'
 
 export default class MockDataHelper {
   static getMockBuildResult(enabled: boolean, state: 'Successful' | 'Failed') {
@@ -23,9 +24,9 @@ export default class MockDataHelper {
     }
   }
 
-  static getMockBuildStatus(enabled: boolean, lifeCycleState: 'InProgress' | 'Finished') {
+  static getMockBuildStatus(enabled: boolean, lifeCycleState: 'InProgress' | 'Finished', state: 'Unknown' | 'Successful' | 'Failed') {
     return {
-      enabled: faker.random.alphaNumeric(100),
+      expand: faker.random.alphaNumeric(100),
       link: MockDataHelper.getMockLink(),
       plan: MockDataHelper.getMockPlan(enabled),
       planName: faker.random.alphaNumeric(20),
@@ -34,6 +35,55 @@ export default class MockDataHelper {
       lifeCycleState: lifeCycleState,
       id: faker.random.number(10000),
       buildStartedTime: faker.date.recent(1),
+      prettyBuildStartedTime: faker.random.alphaNumeric(20),
+      buildDurationInSeconds: faker.random.number(60),
+      buildDuration: faker.random.number(60),
+      buildDurationDescription: faker.random.alphaNumeric(20),
+      buildRelativeTime: faker.random.alphaNumeric(20),
+      vcsRevisionKey: faker.random.alphaNumeric(20),
+      vcsRevisions: {
+        size: faker.random.number(60),
+        startIndex: faker.random.number(60),
+        maxResult: faker.random.number(60),
+      },
+      continuable: faker.random.boolean(),
+      onceOff: faker.random.boolean(),
+      restartable: faker.random.boolean(),
+      notRunYet: faker.random.boolean(),
+      finished: faker.random.boolean(),
+      successful: faker.random.boolean(),
+      buildReason: faker.random.alphaNumeric(20),
+      reasonSummary: faker.random.alphaNumeric(20),
+      artifacts: {
+        size: faker.random.number(60),
+        startIndex: faker.random.number(60),
+        maxResult: faker.random.number(60),
+      },
+      comments: {
+        size: faker.random.number(60),
+        startIndex: faker.random.number(60),
+        maxResult: faker.random.number(60),
+      },
+      jiraIssues: {
+        size: faker.random.number(60),
+        startIndex: faker.random.number(60),
+        maxResult: faker.random.number(60),
+      },
+      stages: {
+        size: faker.random.number(60),
+        startIndex: faker.random.number(60),
+        maxResult: faker.random.number(60),
+      },
+      changes: {
+        size: faker.random.number(60),
+        startIndex: faker.random.number(60),
+        maxResult: faker.random.number(60),
+      },
+      metadata: {
+        size: faker.random.number(60),
+        startIndex: faker.random.number(60),
+        maxResult: faker.random.number(60),
+      },
       progress: {
         isValid: true,
         isUnderAverageTime: true,
@@ -46,11 +96,22 @@ export default class MockDataHelper {
         buildTime: faker.random.number(100),
         prettyBuildTime: `${faker.random.number(60)} seconds`,
         startedTime: faker.date.recent(1),
-        startedTimeFormatted: faker.date.recent(1),
+        startedTimeFormatted: faker.random.alphaNumeric(20),
         prettyStartedTime: faker.random.number(60) + ' secs ago',
       },
+      key: faker.random.alphaNumeric(20),
+      planResultKey: {
+        key: faker.random.alphaNumeric(20),
+        entityKey: {
+          key: faker.random.alphaNumeric(20),
+        },
+        resultNumber: faker.random.number(60),
+      },
+      state: state,
+      buildState: state,
       number: faker.random.number(100),
-    }
+      buildNumber: faker.random.number(60),
+    } as BuildStatus
   }
 
   static getMockLink() {

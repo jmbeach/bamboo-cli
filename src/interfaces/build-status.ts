@@ -11,7 +11,7 @@ export default interface BuildStatus {
     buildResultKey: string;
     lifeCycleState: 'InProgress' | 'Finished';
     id: number;
-    buildStartedTime: string;
+    buildStartedTime: Date;
     prettyBuildStartedTime: string;
     buildDurationInSeconds: number;
     buildDuration: number;
@@ -70,9 +70,9 @@ export default interface BuildStatus {
         prettyTimeRemainingLong: string;
         averageBuildDuration: number;
         prettyAverageBuildDuration: string;
-        buildTime: string;
+        buildTime: number;
         prettyBuildTime: string;
-        startedTime: string;
+        startedTime: Date;
         startedTimeFormatted: string;
         prettyStartedTime: string;
     };
