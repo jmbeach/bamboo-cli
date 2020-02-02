@@ -13,18 +13,6 @@ command-line tool to interact with Atlassian Bamboo
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
-* [Configuration](#configuration)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
-* [Configuration](#configuration)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
-* [Configuration](#configuration)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
 
 # Configuration
 
