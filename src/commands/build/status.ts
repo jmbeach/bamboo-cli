@@ -36,6 +36,8 @@ export default class Status extends BambooClientCommand {
   async poll(planKey: string, buildNumber: string): Promise<any> {
     return new Promise(resolver => {
       let activeRequest = false
+
+      // make 4 requests a second maximum
       const intervalId = setInterval(() => {
         // don't make concurrent requests to bamboo
         if (activeRequest) {
