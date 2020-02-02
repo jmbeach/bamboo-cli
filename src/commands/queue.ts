@@ -1,4 +1,5 @@
 import BambooClientCommand from '../bamboo-client-command'
+import Status from './build/status'
 import {flags} from '@oclif/command'
 
 export default class Queue extends BambooClientCommand {
@@ -13,10 +14,12 @@ export default class Queue extends BambooClientCommand {
 
   static flags = {
     json: flags.boolean({char: 'j'}),
+    poll: flags.boolean({char: 'p'}),
   }
 
   static examples = [
     `$ bamboo-cli queue <planKey>
+$ bamboo-cli queue <planKey> -p
 `,
   ]
 
@@ -32,6 +35,10 @@ export default class Queue extends BambooClientCommand {
     const {flags, args} = this.parse(Queue)
     return this.client?.queue(args.planKey)
       .then(res => {
+        if (flags.poll) {
+          return Status.run([args.planKey, res.data.buildNumber.toString(), '-p'])
+        }
+
         this.handleCommonFlags(flags, res)
       }).catch(this.handleError)
   }
