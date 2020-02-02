@@ -6,3 +6,5 @@
 /package-lock.json
 /tmp
 node_modules
+
+node-v12.14.1-win-x64/
