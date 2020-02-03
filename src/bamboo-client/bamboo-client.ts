@@ -45,6 +45,15 @@ export default class BambooClient {
     return this._axios.get(url)
   }
 
+  getBuildLog(planKey: string, buildNumber: string) {
+    const url = `/download/${planKey}-JOB1/build_logs/${planKey}-JOB1-${buildNumber}.log`
+    return this._axios.get(url, {
+      headers: {
+        accept: 'text',
+      },
+    })
+  }
+
   getCurrentUser() {
     return this._axios.get('/rest/api/latest/currentUser.json')
   }

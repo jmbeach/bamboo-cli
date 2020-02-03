@@ -111,8 +111,8 @@ USAGE
 * [`bamboo-cli conf [KEY] [VALUE]`](#bamboo-cli-conf-key-value)
 * [`bamboo-cli currentuser`](#bamboo-cli-currentuser)
 * [`bamboo-cli deploy`](#bamboo-cli-deploy)
-* [`bamboo-cli directory-info [PLANKEY]`](#bamboo-cli-directory-info-plankey)
 * [`bamboo-cli help [COMMAND]`](#bamboo-cli-help-command)
+* [`bamboo-cli logs [PLANKEY] [BUILDNUMBER]`](#bamboo-cli-logs-plankey-buildnumber)
 * [`bamboo-cli plans`](#bamboo-cli-plans)
 * [`bamboo-cli projects`](#bamboo-cli-projects)
 * [`bamboo-cli queue [PLANKEY]`](#bamboo-cli-queue-plankey)
@@ -243,26 +243,6 @@ EXAMPLE
 
 _See code: [src\commands\deploy.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\deploy.ts)_
 
-## `bamboo-cli directory-info [PLANKEY]`
-
-deploy a build
-
-```
-USAGE
-  $ bamboo-cli directory-info [PLANKEY]
-
-ARGUMENTS
-  PLANKEY  plan key
-
-OPTIONS
-  -j, --json
-
-EXAMPLE
-  $ bamboo-cli directory-info <planKey>
-```
-
-_See code: [src\commands\directory-info.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\directory-info.ts)_
-
 ## `bamboo-cli help [COMMAND]`
 
 display help for bamboo-cli
@@ -279,6 +259,24 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src\commands\help.ts)_
+
+## `bamboo-cli logs [PLANKEY] [BUILDNUMBER]`
+
+get plan logs
+
+```
+USAGE
+  $ bamboo-cli logs [PLANKEY] [BUILDNUMBER]
+
+ARGUMENTS
+  PLANKEY      plan key
+  BUILDNUMBER  build number
+
+EXAMPLE
+  $ bamboo-cli logs <planKey> <buildNumber>
+```
+
+_See code: [src\commands\logs.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\logs.ts)_
 
 ## `bamboo-cli plans`
 
