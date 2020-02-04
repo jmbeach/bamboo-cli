@@ -1,11 +1,11 @@
-import BambooClientCommand from '../bamboo-client-command'
+import BambooClientCommand from '../../bamboo-client-command'
 import color from '@oclif/color'
 
 export default class Logs extends BambooClientCommand {
   static description = 'get plan logs';
 
   static examples = [
-    '$ bamboo-cli logs <planKey> <buildNumber>',
+    '$ bamboo-cli build logs <planKey> <buildNumber>',
   ]
 
   static args = [
