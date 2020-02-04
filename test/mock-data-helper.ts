@@ -121,6 +121,19 @@ export default class MockDataHelper {
     }
   }
 
+  static getMockLogLine(logType: 'build' | 'error' | 'simple', message: string | null = null) {
+    const date = new Date()
+    const hours = date.getHours().toString()
+    const minutes = date.getMinutes().toString()
+    const seconds = date.getSeconds().toString()
+    const padNumber = (number: string) => {
+      return `${'0'.substring(0, 2 - number.length)}${number}`
+    }
+    const timeFormatted = `${padNumber(hours)}:${padNumber(minutes)}:${padNumber(seconds)}`
+    const dateFormatted = `04-Feb-2020 ${timeFormatted}`
+    return `${logType}\t${dateFormatted}\t\t${message || faker.random.alphaNumeric(250)}`
+  }
+
   static getMockPlan(enabled: boolean) {
     return {
       shortName: faker.random.alphaNumeric(10),
