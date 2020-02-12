@@ -1,4 +1,7 @@
 import axios, {AxiosInstance} from 'axios'
+export enum ExpandOptions {
+  LogEntries
+}
 export default class BambooClient {
   username: string;
 
@@ -45,13 +48,19 @@ export default class BambooClient {
     return this._axios.get(url)
   }
 
-  getBuildLog(planKey: string, buildNumber: string) {
-    const url = `/download/${planKey}-JOB1/build_logs/${planKey}-JOB1-${buildNumber}.log`
-    return this._axios.get(url, {
-      headers: {
-        accept: 'text',
-      },
-    })
+  getBuildLog(planKey: string, buildNumber: string, expand: ExpandOptions[] | null = null) {
+    let url = `/rest/api/latest/result/${planKey}-JOB1-${buildNumber}`
+
+    if (expand) {
+      url = `${url}?expand=`
+      for (const option of expand) {
+        url += this.getUrlExpandOptionParam(option)
+      }
+
+      url += '&max-results=10000'
+    }
+
+    return this._axios.get(encodeURI(url))
   }
 
   getCurrentUser() {
@@ -64,6 +73,15 @@ export default class BambooClient {
 
   getServerInfo() {
     return this._axios.get('/rest/api/latest/info.json')
+  }
+
+  getUrlExpandOptionParam(option: ExpandOptions) {
+    switch (option) {
+    case ExpandOptions.LogEntries:
+      return 'logEntries'
+    default:
+      throw new Error(`Expand option ${option} unrecognized`)
+    }
   }
 
   queue(key: string) {
