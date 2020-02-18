@@ -48,19 +48,11 @@ export default class BambooClient {
     return this._axios.get(url)
   }
 
-  getBuildLog(planKey: string, buildNumber: string, expand: ExpandOptions[] | null = null) {
+  getBuildLog(planKey: string, buildNumber: string, startFrom: number) {
     let url = `/rest/api/latest/result/${planKey}-JOB1-${buildNumber}`
+    url = `${url}?expand=${this.getUrlExpandOptionParam(ExpandOptions.LogEntries, startFrom.toString())}&max-results=10000`
 
-    if (expand) {
-      url = `${url}?expand=`
-      for (const option of expand) {
-        url += this.getUrlExpandOptionParam(option)
-      }
-
-      url += '&max-results=10000'
-    }
-
-    return this._axios.get(encodeURI(url))
+    return this._axios.get(url)
   }
 
   getCurrentUser() {
@@ -75,10 +67,10 @@ export default class BambooClient {
     return this._axios.get('/rest/api/latest/info.json')
   }
 
-  getUrlExpandOptionParam(option: ExpandOptions) {
+  getUrlExpandOptionParam(option: ExpandOptions, value: string | null = null) {
     switch (option) {
     case ExpandOptions.LogEntries:
-      return 'logEntries'
+      return `logEntries%5B${value}%3A%5D`
     default:
       throw new Error(`Expand option ${option} unrecognized`)
     }
