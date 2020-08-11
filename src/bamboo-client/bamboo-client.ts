@@ -59,6 +59,10 @@ export default class BambooClient {
     return this._axios.get('/rest/api/latest/currentUser.json')
   }
 
+  getDeploy(deployId: string) {
+    return this._axios.get(`rest/api/latest/deploy/result/${deployId}`)
+  }
+
   getReleases(projectId: string) {
     return this._axios.get(`/rest/api/latest/deploy/project/${projectId}/versions`)
   }
