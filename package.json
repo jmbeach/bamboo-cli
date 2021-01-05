@@ -15,7 +15,7 @@
     "@oclif/plugin-help": "^2",
     "@tiagonapoli/oclif-plugin-spaced-commands": "^0.0.2",
     "@types/supports-color": "^5.3.0",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "cli-ux": "^5.4.4",
     "conf": "^6.2.0",
     "conf-cli": "^0.1.9",
