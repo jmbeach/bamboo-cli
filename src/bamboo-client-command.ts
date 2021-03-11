@@ -87,6 +87,10 @@ export default abstract class BambooClientCommand extends Command {
       data = getObjectFromKey(rootKey, data)
     }
 
+    if (data.results.result) {
+      data = data.results.result
+    }
+
     if (typeof data.length === 'number') {
       for (const obj of data) {
         logObject(obj)

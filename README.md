@@ -36,7 +36,7 @@ $ npm install -g bamboo-cli
 $ bamboo-cli COMMAND
 running command...
 $ bamboo-cli (-v|--version|version)
-bamboo-cli/0.0.0 win32-x64 node-v8.16.2
+bamboo-cli/0.0.0 win32-x64 node-v12.14.1
 $ bamboo-cli --help [COMMAND]
 USAGE
   $ bamboo-cli COMMAND
@@ -59,6 +59,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`bamboo-cli autocomplete [SHELL]`](#bamboo-cli-autocomplete-shell)
+* [`bamboo-cli build:latest [PLANKEY]`](#bamboo-cli-buildlatest-plankey)
 * [`bamboo-cli build:logs [PLANKEY] [BUILDNUMBER]`](#bamboo-cli-buildlogs-plankey-buildnumber)
 * [`bamboo-cli build:results`](#bamboo-cli-buildresults)
 * [`bamboo-cli build:status [PLANKEY] [BUILDNUMBER]`](#bamboo-cli-buildstatus-plankey-buildnumber)
@@ -95,6 +96,26 @@ EXAMPLES
 ```
 
 _See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.1.5/src\commands\autocomplete\index.ts)_
+
+## `bamboo-cli build:latest [PLANKEY]`
+
+get latest build data
+
+```
+USAGE
+  $ bamboo-cli build latest [PLANKEY]
+
+ARGUMENTS
+  PLANKEY  plan key
+
+OPTIONS
+  -j, --json
+
+EXAMPLE
+  $ bamboo-cli build latest --planKey <plan key>
+```
+
+_See code: [src\commands\build\latest.ts](https://github.com/jmbeach/bamboo-cli/blob/v0.0.0/src\commands\build\latest.ts)_
 
 ## `bamboo-cli build:logs [PLANKEY] [BUILDNUMBER]`
 
