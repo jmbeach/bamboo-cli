@@ -39,6 +39,11 @@ export default class BambooClient {
     return this._axios.get('/rest/api/latest/deploy/project/all.json')
   }
 
+  getLatestBuild(planKey: string) {
+    const url = `/rest/api/latest/result/${planKey}/latest`
+    return this._axios.get(url)
+  }
+
   getBuilds(planKey: string | null = null, buildNumber: string | null = null) {
     let url = '/rest/api/latest/result'
     if (planKey) {
@@ -57,6 +62,10 @@ export default class BambooClient {
 
   getCurrentUser() {
     return this._axios.get('/rest/api/latest/currentUser.json')
+  }
+
+  getDeploy(deployId: string) {
+    return this._axios.get(`rest/api/latest/deploy/result/${deployId}`)
   }
 
   getReleases(projectId: string) {

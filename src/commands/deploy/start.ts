@@ -1,5 +1,5 @@
 import {flags} from '@oclif/command'
-import BambooClientCommand from '../bamboo-client-command'
+import BambooClientCommand from '../../bamboo-client-command'
 import stringify = require('json-stringify-safe');
 
 export default class Deploy extends BambooClientCommand {
@@ -11,7 +11,7 @@ export default class Deploy extends BambooClientCommand {
   }
 
   static examples = [
-    `$ bamboo-cli deploy -e 123 -v 456
+    `$ bamboo-cli deploy start -e 123 -v 456
 `,
   ]
 
